@@ -113,3 +113,159 @@ svg {
 .no-gap-bottom {
     margin-bottom: -0.75rem !important;
 }
+
+.dana-card {
+    --dana-card-bg: #fff;
+    --dana-card-text: #252525;
+    --dana-card-muted: #6f7377;
+    --dana-card-icon: #7c817f;
+
+    position: relative;
+    max-width: 32rem;
+    min-height: 24rem;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    padding: 8rem 2.5rem 2.5rem;
+    overflow: hidden;
+    color: var(--dana-card-text);
+    background: var(--dana-card-bg);
+    border: 1px solid #eceef2;
+    border-radius: 1rem;
+    box-shadow: 0 0.75rem 2rem rgba(74, 58, 42, 0.12);
+}
+
+html[data-bs-theme="dark"] .dana-card {
+    --dana-card-bg: #212529;
+    --dana-card-text: #f8f9fa;
+    --dana-card-muted: #adb5bd;
+    --dana-card-icon: #adb5bd;
+
+    border-color: #343a40;
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.28);
+}
+
+.dana-brand {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+    color: #118eea;
+    font-family: Arial, sans-serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+}
+
+.dana-brand-mark {
+    position: relative;
+    display: inline-block;
+    width: 2.7rem;
+    height: 2.7rem;
+    background: #118eea;
+    border-radius: 50%;
+}
+
+.dana-brand-mark::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.45rem;
+    height: 0.72rem;
+    content: "";
+    background: var(--dana-card-bg);
+    border-radius: 60% 35% 35% 60%;
+    transform: translate(-50%, -50%) rotate(-6deg);
+}
+
+.dana-account-icon {
+    margin-bottom: 1.8rem;
+    color: var(--dana-card-icon);
+    font-size: 2.5rem;
+}
+
+.dana-account-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dana-label {
+    margin-bottom: 0.5rem;
+    color: var(--dana-card-muted);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+}
+
+.dana-number,
+.dana-owner {
+    margin-bottom: 1.25rem;
+    color: var(--dana-card-text);
+    font-size: 1.55rem;
+    line-height: 1.25;
+}
+
+.dana-owner {
+    margin-bottom: 0;
+}
+
+.dana-copy-button {
+    display: inline-flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.75rem 1.35rem;
+    color: #fff;
+    background: #151e62;
+    border: 0;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.dana-copy-button:hover,
+.dana-copy-button:focus-visible {
+    color: #fff;
+    background: #0d144a;
+}
+
+.dana-copy-button:active {
+    transform: scale(0.97);
+}
+
+.dana-copy-button:disabled {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 576px) {
+    .dana-card {
+        min-height: 21rem;
+        padding: 6.75rem 1.5rem 2rem;
+    }
+
+    .dana-brand {
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .dana-brand-mark {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+    .dana-account-icon {
+        margin-bottom: 1.4rem;
+        font-size: 2rem;
+    }
+
+    .dana-number,
+    .dana-owner {
+        font-size: 1.3rem;
+    }
+
+    .dana-copy-button {
+        padding: 0.65rem 1rem;
+    }
+}
