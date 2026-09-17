@@ -29,7 +29,7 @@ export const guest = (() => {
      * @returns {void}
      */
     const countDownDate = () => {
-        const count = (new Date(document.body.getAttribute('data-time').replace(' ', 'T'))).getTime();
+        const count = new Date(document.body.getAttribute('data-time')).getTime();
 
         /**
          * @param {number} num 
@@ -43,14 +43,16 @@ export const guest = (() => {
         const second = document.getElementById('second');
 
         const updateCountdown = () => {
-            const distance = Math.abs(count - Date.now());
+            const distance = Math.max(0, count - Date.now());
 
             day.textContent = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
             hour.textContent = pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
             minute.textContent = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
             second.textContent = pad(Math.floor((distance % (1000 * 60)) / 1000));
 
-            util.timeOut(updateCountdown, 1000 - (Date.now() % 1000));
+            if (distance > 0) {
+                util.timeOut(updateCountdown, 1000 - (Date.now() % 1000));
+            }
         };
 
         util.timeOut(updateCountdown);
