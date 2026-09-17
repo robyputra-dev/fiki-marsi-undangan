@@ -1,6 +1,5 @@
 import { progress } from './progress.js';
 import { util } from '../../common/util.js';
-import { cache } from '../../connection/cache.js';
 
 export const audio = (() => {
 
@@ -25,11 +24,21 @@ export const audio = (() => {
         let audioEl = null;
 
         try {
-            audioEl = new Audio(await cache('audio').withForceCache().get(url, progress.getAbort()));
+            audioEl = new Audio(url);
             audioEl.loop = true;
             audioEl.muted = false;
             audioEl.autoplay = false;
             audioEl.controls = false;
+            audioEl.preload = 'auto';
+
+            await new Promise((resolve, reject) => {
+                const loaded = () => resolve();
+                const failed = () => reject(new Error('Failed to load audio'));
+
+                audioEl.addEventListener('loadedmetadata', loaded, { once: true });
+                audioEl.addEventListener('error', failed, { once: true });
+                audioEl.load();
+            });
 
             progress.complete('audio');
         } catch {
